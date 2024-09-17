@@ -20,7 +20,7 @@ protocol XMLAttributeProtocol {}
  it will decode the former into the latter.
  */
 @propertyWrapper
-public struct Attribute<Value>: XMLAttributeProtocol {
+public struct Attribute<Value: Sendable>: XMLAttributeProtocol, Sendable {
     public var wrappedValue: Value
 
     public init(_ wrappedValue: Value) {

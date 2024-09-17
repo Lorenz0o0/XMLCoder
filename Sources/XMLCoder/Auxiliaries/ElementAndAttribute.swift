@@ -21,7 +21,7 @@ protocol XMLElementAndAttributeProtocol {}
  `<Book><id>42</id></Book>` and `<Book id="42"></Book>` as `Book(id: 42)`.
  */
 @propertyWrapper
-public struct ElementAndAttribute<Value>: XMLElementAndAttributeProtocol {
+public struct ElementAndAttribute<Value: Sendable>: XMLElementAndAttributeProtocol, Sendable {
     public var wrappedValue: Value
 
     public init(_ wrappedValue: Value) {

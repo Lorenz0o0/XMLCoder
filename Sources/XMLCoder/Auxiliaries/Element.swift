@@ -20,7 +20,7 @@ protocol XMLElementProtocol {}
  it will decode the former into the latter.
  */
 @propertyWrapper
-public struct Element<Value>: XMLElementProtocol {
+public struct Element<Value: Sendable>: XMLElementProtocol, Sendable {
     public var wrappedValue: Value
 
     public init(_ wrappedValue: Value) {
