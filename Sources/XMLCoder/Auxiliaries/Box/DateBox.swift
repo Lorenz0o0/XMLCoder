@@ -43,8 +43,8 @@ struct DateBox: Equatable {
     }
 
     init?(iso8601 string: String) {
-        if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
-            guard let unboxed = _iso8601Formatter.date(from: string) else {
+        if #available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *) {
+            guard let unboxed = try? _iso8601Formatter.parse(string) else {
                 return nil
             }
             self.init(unboxed, format: .iso8601)
@@ -69,8 +69,8 @@ struct DateBox: Equatable {
             let milliseconds = unboxed.timeIntervalSince1970 * 1000.0
             return milliseconds.description
         case .iso8601:
-            if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
-                return _iso8601Formatter.string(from: self.unboxed)
+            if #available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *) {
+                return self.unboxed.ISO8601Format()
             } else {
                 fatalError("ISO8601DateFormatter is unavailable on this platform.")
             }

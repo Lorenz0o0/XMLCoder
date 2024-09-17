@@ -13,9 +13,9 @@ import Foundation
 /// against the latest SDK (w/ ISO8601DateFormatter), but linked against
 /// whichever Foundation the user has. ISO8601DateFormatter might not exist, so
 /// we better not hit this code path on an older OS.
-@available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
-var _iso8601Formatter: ISO8601DateFormatter = {
-    let formatter = ISO8601DateFormatter()
-    formatter.formatOptions = .withInternetDateTime
+//@available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
+@available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+let _iso8601Formatter: Date.ISO8601FormatStyle = {
+    let formatter = Date.ISO8601FormatStyle()
     return formatter
 }()
